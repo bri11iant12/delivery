@@ -1,0 +1,170 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Verdana, sans-serif;
+    background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+}
+
+.app {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+}
+
+.card__label {
+    color: gray;
+    font-size: 14px;
+}
+
+.card__name, .card__address, .card__distance {
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.delivery {
+    background-color: rgb(255, 255, 255);
+}
+
+.delivered {
+    border: 3px solid green;
+}
+
+.canceled {
+    background-color: rgba(177, 177, 177, 0.315);
+}
+
+.btn__edit {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid blue;
+    color: blue;
+    border-radius: 12px;
+    padding: 5px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.edit__window {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+select {
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.edit__window-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit__window-btn-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: white;
+    border: none;
+}
+
+.edit__window-btn-save {
+    background-color: rgb(80, 80, 190);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.edit__window-btn-save:hover {
+    background-color: rgb(110, 110, 197);
+}
+
+.edit__window-btn-save:active {
+    background-color: rgb(53, 53, 192);
+}
+
+.btn__wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.total__distance {
+    font-size: 18px;
+}
+
+.btn__count {
+    background-color: rgb(63, 63, 189);
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn__count:hover {
+    background-color: rgb(85, 85, 190);
+}
+
+.btn__count:active {
+    background-color: rgb(46, 46, 190);
+}

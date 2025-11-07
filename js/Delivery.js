@@ -1,0 +1,72 @@
+export default class Delivery {
+
+    _name = '';
+    _address = '';
+    _distance = 0
+
+    constructor(name, address, distance) {
+        this.name = name;
+        this.address = address;
+        this.distance = distance;
+    }
+
+    getElement() {
+        this.cardEl = document.createElement('div');
+        this.cardEl.classList.add('card');
+
+        this.nameLabelEl = document.createElement('span');
+        this.nameLabelEl.classList.add('card__label');
+        this.nameLabelEl.textContent = 'Имя';
+
+        this.nameEl = document.createElement('div');
+        this.nameEl.classList.add('card__name');
+        this.nameEl.textContent = this.name;
+
+        this.addressLabelEl = document.createElement('span');
+        this.addressLabelEl.classList.add('card__label');
+        this.addressLabelEl.textContent = 'Адрес';
+
+        this.addressEl = document.createElement('div');
+        this.addressEl.classList.add('card__address');
+        this.addressEl.textContent = this.address;
+
+        this.distanceLabelEl = document.createElement('span');
+        this.distanceLabelEl.classList.add('card__label');
+        this.distanceLabelEl.textContent = 'Расстояние';
+
+        this.distanceEl = document.createElement('span');
+        this.distanceEl.classList.add('card__distance');
+        this.distanceEl.textContent = `${this.distance} км`;
+        
+        this.cardEl.append(this.nameLabelEl, this.nameEl, this.addressLabelEl, this.addressEl, this.distanceLabelEl ,this.distanceEl);
+        return this.cardEl
+    }
+
+    get name() {
+        return this._name
+    }
+
+    get address() {
+        return this._address
+    }
+
+    get distance() {
+        return this._distance
+    }
+
+    set name(value) {
+        this._name = value;
+        if(this.nameEl) this.nameEl.textContent = value;
+    }
+
+    set address(value) {
+        this._address = value;
+        if(this.addressEl) this.addressEl.textContent = value;
+    }
+
+    set distance(value) {
+        this._distance = value;
+        if(this.distanceEl) this.distanceEl.textContent = `${value} км`;
+    }
+
+}
