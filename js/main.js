@@ -35,4 +35,27 @@ deliveryArr.forEach(Delivery => {
     app.append(Delivery.getElement())
 })
 
+const form = document.querySelector('#addDeliveryForm');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.querySelector('#addName').value.trim();
+    const address = document.querySelector('#addAddress').value.trim();
+    const distance = document.querySelector('#addDistance').value.trim();
+    const status = document.querySelector('#addStatus').value.trim();
+
+    if(!name || !address || Number.isNaN(distance)) {
+        alert('Заполните поля');
+        return;
+    }
+
+    const newDelivery = new EditDelivery(name, address, distance, status);
+
+    deliveryArr.push(newDelivery);
+    app.append(newDelivery.getElement());
+
+    form.reset();
+})
+
 createTotalDistanceButton(deliveryArr);

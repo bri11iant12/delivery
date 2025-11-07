@@ -168,3 +168,50 @@ select {
 .btn__count:active {
     background-color: rgb(46, 46, 190);
 }
+
+.add__form {
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.add__form-input,
+.add__form-select {
+    border-radius: 8px;
+    border: 1px solid gray;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.add__form-btn {
+    background-color: rgb(63, 63, 189);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.add__form-btn:hover {
+    background-color: rgb(85, 85, 190);
+}
+
+.add__form-btn:active {
+    background-color: rgb(46, 46, 190);
+}
+
+.add__form-title {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}

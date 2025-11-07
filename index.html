@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
     <script type="module" src="js/main.js" defer></script>
 </head>
-<body>
-    <div class="app" id="app">
 
-    </div>
+<body>
+    <div class="app" id="app"></div>
+
+    <form id="addDeliveryForm" class="add__form">
+        <h2 class="add__form-title">Добавить доставку</h2>
+        <input type="text" id="addName" placeholder="Имя" class="add__form-input" />
+        <input type="text" id="addAddress" placeholder="Адрес" class="add__form-input" />
+        <input type="number" id="addDistance" placeholder="Расстояние (км)" class="add__form-input" />
+        <select id="addStatus" class="add__form-select">
+            <option value="delivery">Доставляется</option>
+            <option value="delivered">Доставлен</option>
+            <option value="canceled">Отменен</option>
+        </select>
+        <button type="submit" class="add__form-btn">Добавить</button>
+    </form>
+    
 </body>
+
 </html>
