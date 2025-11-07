@@ -1,22 +1,22 @@
-import Delivery from './Delivery.js'
+import Delivery from './Delivery.js';
 import EditDelivery from './EditDelivery.js';
+import { saveToLocalStorage, loadFromLocalStorage } from './localStorage.js';
 
-
-const app = document.querySelector('#app');
+const app = document.querySelector("#app");
 
 function createTotalDistanceButton(deliveryArr) {
-  const btnWrap = document.createElement('div');
-  btnWrap.classList.add('btn__wrap');
+  const btnWrap = document.createElement("div");
+  btnWrap.classList.add("btn__wrap");
 
-  const countBtn = document.createElement('button');
-  countBtn.classList.add('btn__count');
-  countBtn.textContent = 'Общее расстояние';
+  const countBtn = document.createElement("button");
+  countBtn.classList.add("btn__count");
+  countBtn.textContent = "Общее расстояние";
 
-  const resultEl = document.createElement('div');
-  resultEl.classList.add('total__distance');
+  const resultEl = document.createElement("div");
+  resultEl.classList.add("total__distance");
 
-  countBtn.addEventListener('click', () => {
-    const total = EditDelivery.getTotalDistance(deliveryArr);
+  countBtn.addEventListener("click", () => {
+    const total = Delivery.getTotalDistance(deliveryArr);
     resultEl.textContent = `Общее расстояние: ${total} км`;
   });
 
@@ -24,38 +24,44 @@ function createTotalDistanceButton(deliveryArr) {
   document.body.append(btnWrap);
 }
 
-const deliveryArr = [
-  new Delivery("Ольга", "ул. Вымыслов, д. 12", 8),
-  new Delivery("Дмитрий", "ул. Задачная, д. 7", 3),
-  new Delivery("Олеся", "ул. Ткачей, д. 43", 16),
-  new EditDelivery("Дмитрий", "ул. Задачная, д. 7", 3, "delivered")
-];
+export let deliveryArr = loadFromLocalStorage(EditDelivery);
 
-deliveryArr.forEach(Delivery => {
-    app.append(Delivery.getElement())
-})
+if (deliveryArr.length === 0) {
+    deliveryArr = [
+        new Delivery("Ольга", "ул. Вымыслов, д. 12", 8),
+        new Delivery("Дмитрий", "ул. Задачная, д. 7", 3),
+        new Delivery("Олеся", "ул. Ткачей, д. 43", 16),
+        new EditDelivery("Дмитрий", "ул. Задачная, д. 7", 3, "delivered")
+    ];
+}
 
-const form = document.querySelector('#addDeliveryForm');
+deliveryArr.forEach((Delivery) => {
+  app.append(Delivery.getElement(deliveryArr));
+});
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+const form = document.querySelector("#addDeliveryForm");
 
-    const name = document.querySelector('#addName').value.trim();
-    const address = document.querySelector('#addAddress').value.trim();
-    const distance = document.querySelector('#addDistance').value.trim();
-    const status = document.querySelector('#addStatus').value.trim();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    if(!name || !address || Number.isNaN(distance)) {
-        alert('Заполните поля');
-        return;
-    }
+  const name = document.querySelector("#addName").value.trim();
+  const address = document.querySelector("#addAddress").value.trim();
+  const distanceStr = document.querySelector("#addDistance").value.trim();
+  const distance = Number(distanceStr);
+  const status = document.querySelector("#addStatus").value.trim();
 
-    const newDelivery = new EditDelivery(name, address, distance, status);
+  if (!name || !address || distanceStr === "" || Number.isNaN(distance)) {
+    alert("Заполните поля");
+    return;
+  }
 
-    deliveryArr.push(newDelivery);
-    app.append(newDelivery.getElement());
+  const newDelivery = new EditDelivery(name, address, distance, status);
+  deliveryArr.push(newDelivery);
+  app.append(newDelivery.getElement(deliveryArr));
 
-    form.reset();
-})
+  saveToLocalStorage(deliveryArr);
+
+  form.reset();
+});
 
 createTotalDistanceButton(deliveryArr);

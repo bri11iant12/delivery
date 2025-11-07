@@ -1,13 +1,15 @@
 import Delivery from "./Delivery.js";
 
+
 export default class EditDelivery extends Delivery {
     constructor(name, address, distance, status) {
         super(name, address, distance)
         this._status = status;
     }
 
-    getElement() {
-        const card = super.getElement();
+    getElement(deliveryArr) {
+        const card = super.getElement(deliveryArr);
+        this._deliveryArr = deliveryArr;
         card.classList.add(this._status);
 
         const editBtn = this._createEditBtn();
@@ -137,8 +139,8 @@ export default class EditDelivery extends Delivery {
 
         const newDistance = Number(newDistanceStr);
 
-        if (!newName || !newAddress || newDistance === '') {
-            alert('Заполните все поля');
+        if (!newName || !newAddress || newDistanceStr === '' || Number.isNaN(newDistance)) {
+            alert('Заполните все поля верно');
             return;
         }
 
@@ -152,6 +154,10 @@ export default class EditDelivery extends Delivery {
         card.classList.add(this._status);
 
         this._closeModal();
+        if (this._deliveryArr) {
+            this._updateTotalDistance(this._deliveryArr);
+            saveToLocalStorage(this._deliveryArr);
+        }
     }
 
     _closeModal() {
@@ -159,16 +165,6 @@ export default class EditDelivery extends Delivery {
             this.editOverlay.remove();
             this.editOverlay = null;
         }
-    }
-
-    static getTotalDistance(deliveryArr) {
-        let total = 0;
-        for (const delivery of deliveryArr) {
-            if (delivery.status !== 'canceled') {
-                total += delivery.distance;
-            }
-        }
-        return total;
     }
 
     get status() {
