@@ -1,4 +1,4 @@
-import { saveToLocalStorage } from "./localStorage.js";
+import { saveToLocalStorage } from './localStorage.js';
 
 export default class Delivery {
 

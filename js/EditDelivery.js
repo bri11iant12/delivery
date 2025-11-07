@@ -1,4 +1,4 @@
-import Delivery from "./Delivery.js";
+import Delivery from './Delivery.js';
 
 
 export default class EditDelivery extends Delivery {
